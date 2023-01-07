@@ -1,0 +1,21 @@
+---
+- name: Run all tasks
+  hosts: futro
+  become: true
+  vars_files:
+  - group_vars/main.yml
+  tasks:
+    - name: Import all tasks
+      ansible.builtin.include_tasks: "{{ item }}"
+      loop:
+        - tasks/essential.yml
+        - tasks/docker.yml
+      tags: init
+
+    - name: Deploy containers
+      ansible.builtin.include_tasks: tasks/containers/homer.yml
+      tags: containers
+
+  handlers:
+    - name: Import handlers
+      ansible.builtin.import_tasks: handlers/main.yml

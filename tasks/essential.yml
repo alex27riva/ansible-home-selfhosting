@@ -1,0 +1,38 @@
+---
+- name: Install essential packages
+  ansible.builtin.apt:
+    name:
+      - htop
+      - vim
+      - neofetch
+      - gpg
+    state: present
+
+- name: Ensure /etc/sudoers.d/ folder exists
+  ansible.builtin.file:
+    path: /etc/sudoers.d/
+    state: directory
+    mode: '0755'
+
+- name: Allow user to sudo without password
+  ansible.builtin.lineinfile:
+    dest: /etc/sudoers.d/{{ sudo_user }}
+    create: true
+    mode: '0440'
+    regexp: '^{{ sudo_user }}'
+    line: '{{ sudo_user }} ALL=(ALL) NOPASSWD:ALL'
+    validate: visudo -cf %s
+
+- name: Disable SSH root login
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PermitRootLogin'
+    line: 'PermitRootLogin no'
+
+- name: Disable SSH password authentication
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PasswordAuthentication'
+    line: 'PasswordAuthentication no'
+  notify:
+    - restart ssh
