@@ -1,0 +1,12 @@
+---
+- name: Configure Libreddit container
+  community.docker.docker_container:
+    name: libreddit
+    image: libreddit/libreddit
+    env:
+      THEME: "gold"
+      USE_HLS: "on"
+      HIDE_HLS_NOTIFICATION: "on"
+    ports:
+      - "{{ libreddit_port }}:8080"
+    restart_policy: always

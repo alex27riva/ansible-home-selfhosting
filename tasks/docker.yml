@@ -53,6 +53,14 @@
     name: docker
     state: present
 
+- name: Make sure that the docker folders exists
+  ansible.builtin.file:
+    path: "{{ docker_dir }}"
+    owner: "{{ sudo_user }}"
+    group: "{{ sudo_user }}"
+    mode: '0755'
+    state: directory
+
 - name: Ensure Docker is active
   ansible.builtin.service:
     name: docker
