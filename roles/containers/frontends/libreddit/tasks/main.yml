@@ -4,9 +4,9 @@
     name: libreddit
     image: libreddit/libreddit
     env:
-      THEME: "gold"
-      USE_HLS: "on"
-      HIDE_HLS_NOTIFICATION: "on"
+      THEME: "{{ libreddit_theme }}"
+      USE_HLS: "{{ libreddit_hls }}"
+      HIDE_HLS_NOTIFICATION: "{{ libreddit_hls_hide }}"
     ports:
       - "{{ libreddit_port }}:8080"
     restart_policy: always

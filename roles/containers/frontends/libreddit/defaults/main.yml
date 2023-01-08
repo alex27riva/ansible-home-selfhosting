@@ -1,0 +1,11 @@
+container_name: libreddit
+
+homer_category: frontends
+
+libreddit_theme: gold
+
+libreddit_hls: "on"
+
+libreddit_hls_hide: "on"
+
+libreddit_port: 7420
