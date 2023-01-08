@@ -40,8 +40,8 @@ colors:
     status-online: "{{ colors.color10 }}"
 
 services:
-  - name: "Frontends"
-    icon: "fas fa-browser"
+  - name: "Privacy frontends"
+    icon: "fas fa-user-secret"
     items:
   {% for item in web_applications if "frontend" in item.category and item.url != "" %}
     - name: "{{ item.name }}"
@@ -86,7 +86,7 @@ services:
       - name: "PiHole"
         type: Ping
         logo: /assets/tools/homer-icons/pihole.png
-        url: "http://192.168.178.34:81"
-        endpoint: "http://192.168.178.34:81"
+        url: "{{ pihole_url }}"
+        endpoint: "{{ pihole_url }}"
         target: "_blank"
 

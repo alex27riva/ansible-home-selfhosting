@@ -15,6 +15,8 @@ ntp_timezone: "{{ timezone }}"
 
 locale: en_US.UTF-8
 
+host_tld: "box"
+
 lan_network: "192.168.1.0/24"
 
 vpn_network: "10.1.1.0/24"
@@ -65,27 +67,15 @@ security_autoupdate_mail_to: "{{ email }}"
 
 security_autoupdate_mail_on_error: true
 
-# Public-facing services
-
-enable_nextcloud: true
-
-enable_vaultwarden: true
-
-enable_swag: true
-
-enable_bunkerized_nginx: false
-
-# Containers
+# Frontends
 
 enable_libreddit: true
+enable_nitter: true
 
-# DDNS
+# System
 
-enable_duckdns: false
-
-enable_cloudflare_ddns: true
-
-enable_ddclient: true
+enable_fritzbox: true
+pihole_url: "http://pi.hole/"
 
 # VPN
 
@@ -108,5 +98,3 @@ enable_iptables: true
 
 enable_fail2ban: true
 
-# We have our own f2b rules
-security_fail2ban_enabled: false

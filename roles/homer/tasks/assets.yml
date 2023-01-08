@@ -17,6 +17,17 @@
   when: lookup('vars', 'enable_' + item.path.split('/')[-1]) | default(False) and lookup('vars', item.path.split('/')[-1])['dashboard_url'] is defined
   with_items: "{{ containers.files }}"
 
+- name: Copy other icons
+  ansible.builtin.copy:
+    src: "files/icons/{{ item }}.png"
+    dest: "{{ docker_dir }}/{{ container_name }}/tools/homer-icons"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+  with_items:
+    - "fritzbox"
+    - "pihole"
+
 - name: Copy the logo
   ansible.builtin.copy:
     src: "files/icons/logo.jpg"
