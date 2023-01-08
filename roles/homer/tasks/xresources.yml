@@ -1,15 +1,15 @@
 ---
 - name: Install pip
-  package:
+  ansible.builtin.package:
     name: python3-pip
     state: present
 
 - name: Install the Xresources parser
-  pip:
+  ansible.builtin.pip:
     name: xparser
 
 - name: Install the Xresources file
-  copy:
+  ansible.builtin.copy:
     dest: "/home/{{ username }}/.Xresources"
     src: "files/colorschemes/{{ colorscheme | lower }}"
     owner: "{{ username }}"
@@ -17,11 +17,11 @@
     mode: 0644
 
 - name: Parse the Xresources file
-  shell:
+  ansible.builtin.shell:
     cmd: "python3 -c 'import xrp; import json; result = xrp.parse_file(\"/home/{{ username }}/.Xresources\", encoding=\"utf8\"); print(json.dumps(dict(result.resources), indent = 4).replace(\"*.\", \"\").replace(\"*\", \"\"))'"
   register: xresources
   changed_when: false
 
 - name: Save variables
-  set_fact:
+  ansible.builtin.set_fact:
     colors: "{{ xresources.stdout | from_json }}"

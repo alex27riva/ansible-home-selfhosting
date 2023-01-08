@@ -4,14 +4,14 @@
     name: homer
     image: "b4bz/homer:latest"
     pull: true
-    state: absent
+    state: started
     env:
       UID: "{{ guid }}"
       GID: "{{ guid }}"
       INIT_ASSETS: "1"
       TZ: "{{ timezone }}"
     volumes:
-      - "/home/{{ sudo_user }}/.config/homer/assets:/www/assets"
+      - "{{ docker_dir }}/{{ container_name }}:/www/assets"
     ports:
       - 8080:8080
     restart_policy: always
