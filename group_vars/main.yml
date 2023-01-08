@@ -1,14 +1,8 @@
 sudo_user: alessandro
 domain_url: "kfikvv3vmjqpztlw.myfritz.net"
 
-wireguard_port: 50000
-
 #
 # Docker
 #
-
 docker_dir: /opt/docker/data
 
-# containers
-
-libreddit_port: 7420
