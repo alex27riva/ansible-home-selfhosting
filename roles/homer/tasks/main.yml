@@ -1,0 +1,5 @@
+---
+- ansible.builtin.include_tasks: list_services.yml
+- ansible.builtin.include_tasks: xresources.yml
+- ansible.builtin.include_tasks: assets.yml
+- ansible.builtin.include_tasks: docker.yml
