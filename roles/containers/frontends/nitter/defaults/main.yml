@@ -1,0 +1,9 @@
+container_name: nitter
+
+homer_category: frontends
+
+dashboard_url: "http://nitter.{{ host_tld }}"
+
+nitter_port: 6520
+
+redis_container: redis

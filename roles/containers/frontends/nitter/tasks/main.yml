@@ -1,0 +1,40 @@
+---
+- name: Create volumes for redis
+  community.docker.docker_volume:
+    volume_name: "nitter_redis"
+
+- name: Ensure data folder for Nitter exists
+  ansible.builtin.file:
+    path: "{{ docker_dir }}/nitter"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0744
+    state: directory
+
+- name: Copy nitter config template
+  ansible.builtin.template:
+    src: "templates/nitter.conf.j2"
+    dest: "{{ docker_dir }}/nitter/nitter.conf"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
+- name: Configure Redis image for Nitter
+  community.docker.docker_container:
+    name: redis
+    image: "redis:alpine"
+    command: redis-server --save 60 1 --loglevel warning
+    volumes:
+      - "nitter_redis:/data"
+    restart_policy: always
+
+- name: Configure Nitter container
+  community.docker.docker_container:
+    name: nitter
+    image: "zedeus/nitter:latest"
+    volumes:
+      - "{{ docker_dir }}/nitter/nitter.conf:/src/nitter.conf"
+    ports:
+      - "{{ nitter_port }}:8080"
+    restart_policy: no
+    recreate: true
