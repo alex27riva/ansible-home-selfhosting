@@ -1,0 +1,62 @@
+---
+- name: Create volume for Postgres
+  community.docker.docker_volume:
+    volume_name: postgresdata
+
+- name: Create repo directory
+  ansible.builtin.file:
+    path: "{{ invidious_repo_dir }}"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: '0755'
+    state: directory
+
+# Currently the repository has to be cloned, this is because the init-invidious-db.sh file and the config/sql directory have to be mounted to the postgres container.
+- name: Clone Invidious repo
+  ansible.builtin.git:
+    repo: 'https://github.com/iv-org/invidious.git'
+    dest: "{{ invidious_repo_dir }}"
+    update: false
+
+- name: Create postgres container
+  community.docker.docker_container:
+    name: 'invidious-db'
+    hostname: 'invidious-db'
+    image: 'docker.io/library/postgres:14'
+    restart_policy: unless-stopped
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
+      - "{{ invidious_repo_dir }}/config/sql:/config/sql"
+      - "{{ invidious_repo_dir }}/docker/init-invidious-db.sh:/docker-entrypoint-initdb.d/init-invidious-db.sh"
+    env:
+      POSTGRES_DB: invidious
+      POSTGRES_USER: kemal
+      POSTGRES_PASSWORD: kemal
+
+- name: Configure Invidious container
+  community.docker.docker_container:
+    name: 'invidious'
+    image: 'quay.io/invidious/invidious:latest'
+    env:
+      INVIDIOUS_CONFIG: |
+        db:
+          dbname: invidious
+          user: kemal
+          password: kemal
+          host: invidious-db
+          port: 5432
+        check_tables: true
+        # external_port:
+        # domain:
+        # https_only: false
+        # statistics_enabled: false
+    healthcheck:
+      test: 'wget -nv --tries=1 --spider http://invidious:{{ invidious_port }}/api/v1/comments/jNQXAC9IVRw || exit 1'
+      interval: 30s
+      timeout: 5s
+      retries: 2
+    ports:
+      - "{{ invidious_port }}:3000"
+    links:
+      - 'invidious-db'
+    restart_policy: unless-stopped

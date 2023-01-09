@@ -25,6 +25,12 @@
         - linkding
         - containers
 
+    - role: containers/frontends/invidious
+      become: false
+      tags:
+        - invidious
+        - containers
+
   handlers:
     - name: Import handlers
       ansible.builtin.import_tasks: handlers/main.yml

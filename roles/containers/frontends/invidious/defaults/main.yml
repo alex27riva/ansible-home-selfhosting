@@ -1,0 +1,10 @@
+---
+container_name: invidious
+
+homer_category: frontends
+
+dashboard_url: "http://invidious.{{ host_tld }}"
+
+invidious_port: 3333
+
+invidious_repo_dir: "/home/{{ username }}/repos/invidious"

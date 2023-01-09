@@ -75,6 +75,7 @@ enable_nitter: true
 # Services
 
 enable_linkding: true
+enable_invidious: true
 
 # System
 
