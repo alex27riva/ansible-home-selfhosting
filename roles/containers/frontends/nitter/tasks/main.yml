@@ -21,12 +21,13 @@
 
 - name: Configure Redis image for Nitter
   community.docker.docker_container:
-    name: redis
+    name: nitter-redis
+    hostname: nitter-redis
     image: "redis:alpine"
     command: redis-server --save 60 1 --loglevel warning
     volumes:
       - "nitter_redis:/data"
-    restart_policy: always
+    restart_policy: on-failure
 
 - name: Configure Nitter container
   community.docker.docker_container:
@@ -36,5 +37,6 @@
       - "{{ docker_dir }}/nitter/nitter.conf:/src/nitter.conf"
     ports:
       - "{{ nitter_port }}:8080"
-    restart_policy: no
-    recreate: true
+    restart_policy: on-failure
+    links:
+      - 'nitter-redis'
