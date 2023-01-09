@@ -8,6 +8,7 @@
   ansible.builtin.find:
     paths:
       - "roles/containers/frontends"
+      - "roles/containers/services"
     file_type: directory
     excludes: "homer"
     recurse: false
