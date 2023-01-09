@@ -72,6 +72,10 @@ security_autoupdate_mail_on_error: true
 enable_libreddit: true
 enable_nitter: true
 
+# Services
+
+enable_linkding: true
+
 # System
 
 enable_fritzbox: true

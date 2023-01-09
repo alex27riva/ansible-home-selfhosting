@@ -1,0 +1,11 @@
+container_name: linkding
+
+homer_category: services
+
+dashboard_url: "http://linkding.{{ host_tld }}"
+
+linkding_port: 9090
+
+default_user: admin
+
+default_pass: changeme

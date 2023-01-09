@@ -1,0 +1,13 @@
+---
+- name: Configure Linkding container
+  community.docker.docker_container:
+    name: "{{ container_name }}"
+    image: "sissbruecker/linkding:latest"
+    volumes:
+      - "{{ docker_dir }}/linkding/data:/etc/linkding/data"
+    ports:
+      - "{{ linkding_port }}:9090"
+    env:
+      LD_SUPERUSER_NAME: "{{ default_user }}"
+      LD_SUPERUSER_PASSWORD: "{{ default_pass }}"
+    restart_policy: unless-stopped
