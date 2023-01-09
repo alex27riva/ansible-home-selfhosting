@@ -1,20 +1,29 @@
 ---
 - name: Run all tasks
   hosts: futro
-  become: true
+  become: false
   vars_files:
-  - group_vars/main.yml
-  tasks:
-    - name: Import all tasks
-      ansible.builtin.include_tasks: "{{ item }}"
-      loop:
-        - tasks/essential.yml
-        - tasks/docker.yml
-      tags: init
+    - group_vars/main.yml
 
-    - name: Deploy containers
-      ansible.builtin.include_tasks: tasks/containers/homer.yml
-      tags: containers
+  roles:
+    - role: homer
+      become: true
+      tags:
+        - homer
+        - containers
+      when: enable_homer | default(False)
+
+    - role: containers/frontends/nitter
+      become: true
+      tags:
+        - nitter
+        - containers
+
+    - role: containers/services/linkding
+      become: true
+      tags:
+        - linkding
+        - containers
 
   handlers:
     - name: Import handlers
