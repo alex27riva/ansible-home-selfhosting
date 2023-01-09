@@ -1,0 +1,17 @@
+---
+- name: Configure Wireguard container
+  community.docker.docker_container:
+    name: "{{ container_name }}"
+    image: 'ngoduykhanh/wireguard-ui:latest'
+    capabilities:
+      - NET_ADMIN
+    volumes:
+      - "{{ docker_dir }}/wireguard/db:/app/db"
+      - "/etc/wireguard:/etc/wireguard"
+    env:
+      WGUI_USERNAME: "admin"
+      WGUI_PASSWORD: "admin"
+      WGUI_MANAGE_START: "false"
+      WGUI_MANAGE_RESTART: "false"
+    network_mode: host
+    restart_policy: unless-stopped

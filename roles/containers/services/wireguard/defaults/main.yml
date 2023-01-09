@@ -1,0 +1,6 @@
+---
+container_name: wireguard
+
+homer_category: services
+
+dashboard_url: "http://wireguard.{{ host_tld }}"

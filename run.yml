@@ -31,6 +31,12 @@
         - invidious
         - containers
 
+    - role: containers/services/wireguard
+      become: false
+      tags:
+        - wireguard
+        - containers
+
   handlers:
     - name: Import handlers
       ansible.builtin.import_tasks: handlers/main.yml

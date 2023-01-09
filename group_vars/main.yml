@@ -1,8 +1,1 @@
-sudo_user: alessandro
-domain_url: "kfikvv3vmjqpztlw.myfritz.net"
-
-#
-# Docker
-#
-docker_dir: /opt/docker/data
-
+---
