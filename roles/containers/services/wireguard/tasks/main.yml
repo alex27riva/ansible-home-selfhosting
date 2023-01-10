@@ -9,8 +9,9 @@
       - "{{ docker_dir }}/wireguard/db:/app/db"
       - "/etc/wireguard:/etc/wireguard"
     env:
-      WGUI_USERNAME: "admin"
-      WGUI_PASSWORD: "admin"
+      WGUI_USERNAME: "{{ wgui_username }}"
+      WGUI_PASSWORD: "{{ wgui_password }}"
+      WGUI_SERVER_LISTEN_PORT: "{{ wireguard_port }}"
       WGUI_MANAGE_START: "false"
       WGUI_MANAGE_RESTART: "false"
     network_mode: host

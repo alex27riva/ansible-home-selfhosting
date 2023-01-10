@@ -4,3 +4,9 @@ container_name: wireguard
 homer_category: services
 
 dashboard_url: "http://wireguard.{{ host_tld }}"
+
+wireguard_port: 50000
+
+wgui_username: admin
+
+wgui_password: changeme
