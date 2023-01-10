@@ -53,7 +53,6 @@ extra_packages:
       - git
       - neofetch
       - vim
-      - tmux
       - iotop
       - ncdu
 

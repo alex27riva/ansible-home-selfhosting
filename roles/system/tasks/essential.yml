@@ -1,11 +1,7 @@
 ---
-- name: Install essential packages
+- name: Install extra packages
   ansible.builtin.apt:
-    name:
-      - htop
-      - vim
-      - neofetch
-      - gpg
+    name: "{{ extra_packages }}"
     state: present
 
 - name: Ensure /etc/sudoers.d/ folder exists
