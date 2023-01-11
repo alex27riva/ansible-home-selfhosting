@@ -78,6 +78,7 @@ enable_nitter: true
 enable_linkding: true
 enable_invidious: true
 enable_wireguard: true
+enable_syncthing: true
 
 # System
 

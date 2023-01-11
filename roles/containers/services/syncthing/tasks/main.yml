@@ -1,0 +1,12 @@
+---
+- name: Configure Syncthing container
+  community.docker.docker_container:
+    name: "{{ container_name }}"
+    image: 'syncthing/syncthing'
+    volumes:
+      - "{{ docker_dir }}/syncthing/data:/var/syncthing"
+    env:
+      PUID: '1000'
+      PGID: '1000'
+    network_mode: host
+    restart_policy: unless-stopped
