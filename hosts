@@ -1,0 +1,2 @@
+[testvm]
+192.168.121.192 ansible_user=vagrant ansible_connection=ssh ansible_ssh_private_key_file="/home/alessandro/.ssh/id_ed25519"

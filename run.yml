@@ -1,10 +1,18 @@
 ---
 - name: Run all roles
-  hosts: futro
+  hosts: testvm
   become: false
   vars_files:
     - group_vars/main.yml
   roles:
+    - role: system
+      become: true
+      tags: system
+
+    - role: docker
+      become: true
+      tags: docker
+
     - role: homer
       become: true
       tags:
@@ -25,18 +33,19 @@
         - containers
 
     - role: containers/frontends/invidious
-      become: false
+      become: true
       tags:
         - invidious
         - containers
 
     - role: containers/services/wireguard
-      become: false
+      become: true
       tags:
         - wireguard
         - containers
 
     - role: containers/services/syncthing
+      become: true
       tags:
         - syncthing
         - containers
