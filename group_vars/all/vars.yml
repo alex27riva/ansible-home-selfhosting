@@ -18,11 +18,13 @@ locale: en_US.UTF-8
 
 host_tld: "box"
 
-lan_network: "192.168.1.0/24"
+lan_subnet: 192.168.1.0/24
 
-vpn_network: "10.1.1.0/24"
+lan_base: "{{ lan_subnet | regex_replace('.0/[0-9]{2}', '') }}"
 
-lan_gateway: "192.168.1.1"
+homeserver_ip: "{{ lan_base }}.30"
+
+lan_gateway: "{{ lan_base }}.1"
 
 dns_nameservers: ["1.1.1.1", "1.0.0.1"]
 
@@ -30,18 +32,11 @@ keyboard_layout: us
 
 username: alessandro
 
-sudo_user: alessandro
-
 guid: "1000"
 
 docker_dir: /opt/docker/data
 
 colorscheme: nord
-
-subdomains: {
-      'nextcloud': 'nextcloud',
-      'vaultwarden': 'vaultwarden',
-}
 
 #
 # Packages

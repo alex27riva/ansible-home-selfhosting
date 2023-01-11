@@ -12,23 +12,9 @@
 
 - name: Allow user to sudo without password
   ansible.builtin.lineinfile:
-    dest: /etc/sudoers.d/{{ sudo_user }}
+    dest: /etc/sudoers.d/{{ username }}
     create: true
     mode: '0440'
-    regexp: '^{{ sudo_user }}'
-    line: '{{ sudo_user }} ALL=(ALL) NOPASSWD:ALL'
+    regexp: '^{{ username }}'
+    line: '{{ username }} ALL=(ALL) NOPASSWD:ALL'
     validate: visudo -cf %s
-
-- name: Disable SSH root login
-  ansible.builtin.lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^PermitRootLogin'
-    line: 'PermitRootLogin no'
-
-- name: Disable SSH password authentication
-  ansible.builtin.lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^PasswordAuthentication'
-    line: 'PasswordAuthentication no'
-  notify:
-    - restart ssh

@@ -31,7 +31,7 @@
 
 - name: Add user to docker group
   ansible.builtin.user:
-    name: "{{ sudo_user }}"
+    name: "{{ username }}"
     groups:
       - docker
     append: true
@@ -44,8 +44,8 @@
 - name: Make sure that the docker folders exists
   ansible.builtin.file:
     path: "{{ docker_dir }}"
-    owner: "{{ sudo_user }}"
-    group: "{{ sudo_user }}"
+    owner: "{{ username }}"
+    group: "{{ username }}"
     mode: '0755'
     state: directory
 
