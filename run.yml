@@ -1,10 +1,9 @@
 ---
-- name: Run all tasks
+- name: Run all roles
   hosts: futro
   become: false
   vars_files:
     - group_vars/main.yml
-
   roles:
     - role: homer
       become: true
@@ -37,6 +36,7 @@
         - wireguard
         - containers
 
-  handlers:
-    - name: Import handlers
-      ansible.builtin.import_tasks: handlers/main.yml
+    - role: containers/services/syncthing
+      tags:
+        - syncthing
+        - containers

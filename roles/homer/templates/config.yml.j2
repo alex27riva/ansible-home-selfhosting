@@ -45,7 +45,9 @@ services:
     items:
   {% for item in web_applications if "frontend" in item.category and item.url != "" %}
     - name: "{{ item.name }}"
+{% if connectivity_check %}
         type: Ping
+{% endif %}
         logo: "{{ item.logo }}"
         url: "{{ item.url }}"
         endpoint: "{{ item.endpoint }}"
@@ -58,7 +60,9 @@ services:
     items:
   {% for item in web_applications if "services" in item.category and item.url != "" %}
     - name: "{{ item.name }}"
+{% if connectivity_check %}
         type: Ping
+{% endif %}
         logo: "{{ item.logo }}"
         url: "{{ item.url }}"
         endpoint: "{{ item.endpoint }}"
@@ -71,22 +75,25 @@ services:
     items:
   {% for item in web_applications if "system" in item.category and item.url != "" %}
     - name: "{{ item.name }}"
+{% if connectivity_check %}
         type: Ping
+{% endif %}
         logo: "{{ item.logo }}"
         url: "{{ item.url }}"
         endpoint: "{{ item.endpoint }}"
         target: "_blank"
   {% endfor %}
     - name: "FRITZ!Box"
+{% if connectivity_check %}
         type: Ping
+{% endif %}
         logo: /assets/tools/homer-icons/fritzbox.png
         url: "http://fritz.box/"
         endpoint: "http://{{ ansible_default_ipv4.address }}:3000/http://fritz.box"
         target: "_blank"
       - name: "PiHole"
-        type: Ping
+        type: PiHole
         logo: /assets/tools/homer-icons/pihole.png
         url: "{{ pihole_url }}"
-        endpoint: "{{ pihole_url }}"
         target: "_blank"
 
