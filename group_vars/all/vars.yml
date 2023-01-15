@@ -92,8 +92,4 @@ pihole_url: "http://pi.hole/admin"
 #
 # Security
 #
-enable_crowdsec: true
-
-enable_iptables: true
-
-enable_fail2ban: true
+unattended_clean_interval: '7'

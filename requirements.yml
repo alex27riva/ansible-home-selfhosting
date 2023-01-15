@@ -1,0 +1,3 @@
+---
+roles:
+  - name: hifis.unattended_upgrades
