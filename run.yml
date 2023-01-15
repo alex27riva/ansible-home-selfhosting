@@ -1,6 +1,6 @@
 ---
 - name: Run all roles
-  hosts: testvm
+  hosts: futro
   become: false
   vars_files:
     - group_vars/main.yml
@@ -24,6 +24,12 @@
       become: true
       tags:
         - nitter
+        - containers
+
+    - role: containers/frontends/libreddit
+      become: true
+      tags:
+        - libreddit
         - containers
 
     - role: containers/services/linkding
