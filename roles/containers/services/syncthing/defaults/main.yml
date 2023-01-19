@@ -5,4 +5,4 @@ homer_category: services
 
 dashboard_url: "http://syncthing.{{ host_tld }}"
 
-syncthing_port: 8384
+ext_port: 8384

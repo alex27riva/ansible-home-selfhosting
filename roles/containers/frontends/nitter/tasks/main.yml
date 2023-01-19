@@ -36,7 +36,7 @@
     volumes:
       - "{{ docker_dir }}/nitter/nitter.conf:/src/nitter.conf"
     ports:
-      - "{{ nitter_port }}:8080"
+      - "{{ ext_port }}:8080"
     restart_policy: on-failure
     links:
       - 'nitter-redis'

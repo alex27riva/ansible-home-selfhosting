@@ -30,7 +30,7 @@
 
 - name: Populate the dictionary of all containers
   ansible.builtin.set_fact:
-    web_applications: "{{ web_applications | default([]) + [{ 'logo': '/assets/tools/homer-icons/' + item.path.split('/')[-1] + '.png', 'name': lookup('vars', item.path.split('/')[-1])['dashboard_name'] | default(item.path.split('/')[-1] | title), 'url' : lookup('vars', item.path.split('/')[-1])['dashboard_url'] | default(''), 'endpoint': lookup('vars', item.path.split('/')[-1])['health_url'] | default(''), 'category': lookup('vars', item.path.split('/')[-1])['homer_category'] | default ('') }] }}"
+    web_applications: "{{ web_applications | default([]) + [{ 'logo': '/assets/tools/homer-icons/' + item.path.split('/')[-1] + '.png', 'name': lookup('vars', item.path.split('/')[-1])['dashboard_name'] | default(item.path.split('/')[-1] | title), 'url' : lookup('vars', item.path.split('/')[-1])['dashboard_url'] | default(''), 'endpoint': lookup('vars', item.path.split('/')[-1])['health_url'] | default(''), 'category': lookup('vars', item.path.split('/')[-1])['homer_category'] | default (''), 'port': lookup('vars', item.path.split('/')[-1])['ext_port'] | default ('') }] }}"
   when: lookup('vars', 'enable_' + item.path.split('/')[-1]) | default(False)
   with_items: "{{ containers.files }}"
 

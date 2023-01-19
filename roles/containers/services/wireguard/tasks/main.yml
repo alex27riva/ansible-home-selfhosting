@@ -11,7 +11,7 @@
       net.ipv4.conf.all.src_valid_mark: '1'
     ports:
       - "{{ wg_server_port }}:{{ wg_server_port }}/udp"
-      - "{{ wireguard_port }}:5000/tcp"
+      - "{{ ext_port }}:5000/tcp"
     env:
       WGUI_USERNAME: "{{ wgui_username }}"
       WGUI_PASSWORD: "{{ wgui_password }}"

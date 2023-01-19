@@ -5,10 +5,10 @@ homer_category: frontends
 
 dashboard_url: "http://libreddit.{{ host_tld }}"
 
+ext_port: 7420
+
 libreddit_theme: gold
 
 libreddit_hls: "on"
 
 libreddit_hls_hide: "on"
-
-libreddit_port: 7420
