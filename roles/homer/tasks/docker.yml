@@ -13,7 +13,7 @@
     volumes:
       - "{{ docker_dir }}/{{ container_name }}:/www/assets"
     ports:
-      - 8080:8080
+      - "{{ homer_port }}:8080"
     restart_policy: always
 
 - name: Make sure cors-container is created and running

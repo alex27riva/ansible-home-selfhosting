@@ -59,3 +59,8 @@
       tags:
         - syncthing
         - containers
+
+    - role: nginx
+      become: true
+      tags:
+        - nginx

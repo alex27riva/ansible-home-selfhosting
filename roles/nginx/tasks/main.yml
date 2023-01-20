@@ -1,1 +1,3 @@
 ---
+- ansible.builtin.include_tasks: list_services.yml
+- ansible.builtin.include_tasks: nginx.yml

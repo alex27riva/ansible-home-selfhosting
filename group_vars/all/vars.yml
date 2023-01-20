@@ -71,6 +71,7 @@ security_autoupdate_mail_on_error: true
 enable_homer: true
 homer_title: "Homer"
 homer_subtitle: "A page for all my selfhosted services"
+homer_port: '8080'
 
 # Frontends
 

@@ -1,0 +1,42 @@
+---
+- name: Create data directory for nginx
+  ansible.builtin.file:
+    path: "{{ docker_dir }}/nginx/conf.d/include"
+    mode: '0744'
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: directory
+
+- name: Copy proxy template
+  ansible.builtin.template:
+    src: 'templates/proxy.conf.j2'
+    dest: '{{ docker_dir }}/nginx/conf.d/include/proxy.conf'
+    mode: '0644'
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: Copy reverse proxy configurations
+  ansible.builtin.template:
+    src: 'templates/reverse-proxy.conf.j2'
+    dest: '{{ docker_dir }}/nginx/conf.d/reverse-proxy.conf'
+    mode: '0644'
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: Copy homer configurations
+  ansible.builtin.template:
+    src: 'templates/homer.conf.j2'
+    dest: '{{ docker_dir }}/nginx/conf.d/homer.conf'
+    mode: '0644'
+    owner: "{{ username }}"
+    group: "{{ username }}"
+
+- name: Deploy Nginx container
+  community.docker.docker_container:
+    name: nginx
+    image: 'nginx:latest'
+    ports:
+      - "80:80"
+    volumes:
+      - "{{ docker_dir }}/nginx/conf.d:/etc/nginx/conf.d"
+    recreate: true
