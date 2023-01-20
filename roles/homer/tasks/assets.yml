@@ -30,7 +30,7 @@
 
 - name: Copy the logo
   ansible.builtin.copy:
-    src: "files/icons/logo.jpg"
+    src: "files/icons/logo.png"
     dest: "{{ docker_dir }}/{{ container_name }}/tools/homer-icons"
     owner: "{{ username }}"
     group: "{{ username }}"
