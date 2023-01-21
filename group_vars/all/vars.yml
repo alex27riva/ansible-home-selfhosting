@@ -36,7 +36,7 @@ username: alessandro
 
 guid: "1000"
 
-docker_dir: /opt/docker/data
+docker_dir: '/opt/docker/data'
 
 colorscheme: nord
 
@@ -52,19 +52,6 @@ extra_packages:
       - vim
       - iotop
       - ncdu
-
-#
-# SSH (geerlingguy.security)
-#
-security_ssh_port: 69
-
-security_sudoers_passwordless: ["{{ username }}"]
-
-security_autoupdate_reboot: "true"
-
-security_autoupdate_mail_to: "{{ email }}"
-
-security_autoupdate_mail_on_error: true
 
 # Homer
 
@@ -91,6 +78,6 @@ enable_fritzbox: true
 pihole_url: "http://pi.hole/admin"
 
 #
-# Security
+# Security updates
 #
 unattended_clean_interval: '7'
