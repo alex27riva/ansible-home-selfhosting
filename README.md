@@ -15,19 +15,20 @@ Then you'll need a Debian 11 system with SSH access configured.
 ### Deployment
 To run the Ansible Playbook on your server run the following commmand:
 ```
-ansible-playbook run.yml -i myinventory
+ansible-playbook run.yml -i inventory
 ```
-Where `myinventory` contains your host configuration.
+Where `inventory` contains your host configuration, see `inventory.example` for a sample configuration.
 
-### Available roles
-- Frontends
-    - Libreddit
-    - Nitter
-    - Invidious
-- Services
-    - Linkding
-    - Wireguard UI
-    - Syncthing
+### Included services
+#### Frontends
+- [Libreddit](https://github.com/libreddit/libreddit) (Private front-end for Reddit)
+- [Nitter](https://github.com/zedeus/nitter) (Alternative Twitter front-end)
+- [Invidious](https://github.com/iv-org/invidious) (Invidious is an alternative front-end to YouTube)
+
+#### Services
+- [Linkding](https://github.com/sissbruecker/linkding) (Self-hosted bookmark service)
+- [Wireguard UI](https://github.com/ngoduykhanh/wireguard-ui) (Wireguard web interface)
+- [Syncthing](https://github.com/syncthing/syncthing) (Open Source Continuous File Synchronization)
 
 ### Security
 This configuration is intended to be used within your local network or via a Wireguard VPN connection.
