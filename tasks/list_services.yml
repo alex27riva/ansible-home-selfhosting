@@ -9,6 +9,7 @@
     paths:
       - "roles/containers/frontends"
       - "roles/containers/services"
+      - "roles/containers/system"
     file_type: directory
     excludes: "homer"
     recurse: false

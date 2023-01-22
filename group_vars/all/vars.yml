@@ -75,6 +75,7 @@ enable_syncthing: true
 # System
 
 enable_fritzbox: true
+enable_portainer: true
 pihole_url: "http://pi.hole/admin"
 
 #

@@ -60,6 +60,12 @@
         - syncthing
         - containers
 
+    - role: containers/system/portainer
+      become: true
+      tags:
+        - portainer
+        - containers
+
     - role: nginx
       become: true
       tags:

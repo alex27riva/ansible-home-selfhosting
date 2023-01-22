@@ -1,0 +1,17 @@
+---
+- name: Create a volume for Portainer
+  community.general.docker_volume:
+    volume_name: 'portainer_data'
+
+- name: Deploy Portainer container
+  community.docker.docker_container:
+    name: "{{ container_name }}"
+    image: 'portainer/portainer-ce:latest'
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - 'portainer_data:/data'
+    ports:
+      - '8000:8000'
+      - '{{ ext_port }}:9000'
+      - '9443:9443'
+    restart_policy: always
