@@ -1,72 +1,60 @@
 ---
 - name: Run all roles
   hosts: futro
-  become: false
+  become: true
   vars_files:
     - group_vars/main.yml
   roles:
     - role: system
-      become: true
       tags: system
 
     - role: hifis.unattended_upgrades
-      become: true
       when: ansible_facts['os_family'] == 'Debian'
 
     - role: docker
-      become: true
       tags: docker
 
     - role: homer
-      become: true
       tags:
         - homer
         - containers
       when: enable_homer | default(False)
 
     - role: containers/frontends/nitter
-      become: true
       tags:
         - nitter
         - containers
 
     - role: containers/frontends/libreddit
-      become: true
       tags:
         - libreddit
         - containers
 
     - role: containers/services/linkding
-      become: true
       tags:
         - linkding
         - containers
 
     - role: containers/frontends/invidious
-      become: true
       tags:
         - invidious
         - containers
 
     - role: containers/services/wireguard
-      become: true
       tags:
         - wireguard
         - containers
 
     - role: containers/services/syncthing
-      become: true
       tags:
         - syncthing
         - containers
 
     - role: containers/system/portainer
-      become: true
       tags:
         - portainer
         - containers
 
     - role: nginx
-      become: true
       tags:
         - nginx

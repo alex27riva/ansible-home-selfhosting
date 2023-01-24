@@ -37,6 +37,7 @@
   community.docker.docker_container:
     name: 'invidious'
     image: 'quay.io/invidious/invidious:latest'
+    hostname: 'invidious'
     env:
       INVIDIOUS_CONFIG: |
         db:
