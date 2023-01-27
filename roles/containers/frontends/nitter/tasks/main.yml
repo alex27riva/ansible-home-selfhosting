@@ -27,7 +27,7 @@
     command: redis-server --save 60 1 --loglevel warning
     volumes:
       - "nitter_redis:/data"
-    restart_policy: on-failure
+    restart_policy: unless-stopped
 
 - name: Configure Nitter container
   community.docker.docker_container:
@@ -37,6 +37,6 @@
       - "{{ docker_dir }}/nitter/nitter.conf:/src/nitter.conf"
     ports:
       - "{{ ext_port }}:8080"
-    restart_policy: on-failure
+    restart_policy: unless-stopped
     links:
       - 'nitter-redis'

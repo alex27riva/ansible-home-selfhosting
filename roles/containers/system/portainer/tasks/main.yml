@@ -14,4 +14,4 @@
       - '8000:8000'
       - '{{ ext_port }}:9000'
       - '9443:9443'
-    restart_policy: always
+    restart_policy: unless-stopped

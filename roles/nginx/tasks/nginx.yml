@@ -39,4 +39,4 @@
       - "80:80"
     volumes:
       - "{{ docker_dir }}/nginx/conf.d:/etc/nginx/conf.d"
-    restart: true
+    restart_policy: unless-stopped
