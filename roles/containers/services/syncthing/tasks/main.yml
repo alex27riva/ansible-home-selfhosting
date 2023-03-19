@@ -1,10 +1,15 @@
 ---
+- name: Create a volume for Syncthing
+  community.general.docker_volume:
+    volume_name: 'syncthing_data'
+
 - name: Configure Syncthing container
   community.docker.docker_container:
     name: "{{ container_name }}"
     image: 'syncthing/syncthing'
+    pull: true
     volumes:
-      - "{{ docker_dir }}/syncthing/data:/var/syncthing"
+      - "syncthing_data:/var/syncthing"
     env:
       PUID: '1000'
       PGID: '1000'
