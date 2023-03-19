@@ -14,6 +14,14 @@ Then you'll need a Debian 11 system with SSH access configured.
 - Debian 11 (for the server)
 - Ansible >2.14 (on your machine)
 
+## Requirements
+
+Install the required Ansible collection using the following command
+
+```bash
+ansible-galaxy install -r requirements.yml
+```
+
 ## Deployment
 
 To run the Ansible Playbook on your server run the following commmand:
