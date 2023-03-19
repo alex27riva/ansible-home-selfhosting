@@ -35,6 +35,7 @@
   community.docker.docker_container:
     name: nginx
     image: 'nginx:latest'
+    pull: true
     ports:
       - "80:80"
     volumes:

@@ -3,6 +3,7 @@
   community.docker.docker_container:
     name: libreddit
     image: 'libreddit/libreddit'
+    pull: true
     env:
       LIBREDDIT_DEFAULT_THEME: "{{ libreddit_theme }}"
       LIBREDDIT_DEFAULT_USE_HLS: "{{ libreddit_hls }}"

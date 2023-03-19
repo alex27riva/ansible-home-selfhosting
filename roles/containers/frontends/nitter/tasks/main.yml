@@ -33,6 +33,7 @@
   community.docker.docker_container:
     name: nitter
     image: "zedeus/nitter:latest"
+    pull: true
     volumes:
       - "{{ docker_dir }}/nitter/nitter.conf:/src/nitter.conf"
     ports:

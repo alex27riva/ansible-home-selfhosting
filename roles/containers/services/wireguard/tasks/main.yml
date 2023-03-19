@@ -3,6 +3,7 @@
   community.docker.docker_container:
     name: "{{ container_name }}"
     image: 'ngoduykhanh/wireguard-ui:latest'
+    pull: true
     capabilities:
       - NET_ADMIN
       - SYS_MODULE

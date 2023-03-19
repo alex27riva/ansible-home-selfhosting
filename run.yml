@@ -23,31 +23,37 @@
     - role: containers/frontends/nitter
       tags:
         - nitter
+        - frontends
         - containers
 
     - role: containers/frontends/libreddit
       tags:
         - libreddit
-        - containers
-
-    - role: containers/services/linkding
-      tags:
-        - linkding
+        - frontends
         - containers
 
     - role: containers/frontends/invidious
       tags:
         - invidious
+        - frontends
+        - containers
+
+    - role: containers/services/linkding
+      tags:
+        - linkding
+        - services
         - containers
 
     - role: containers/services/wireguard
       tags:
         - wireguard
+        - services
         - containers
 
     - role: containers/services/syncthing
       tags:
         - syncthing
+        - services
         - containers
 
     - role: containers/system/portainer

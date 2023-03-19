@@ -16,7 +16,6 @@
   ansible.builtin.git:
     repo: 'https://github.com/iv-org/invidious.git'
     dest: "{{ invidious_repo_dir }}"
-    update: false
 
 - name: Create postgres container
   community.docker.docker_container:
@@ -38,6 +37,7 @@
     name: 'invidious'
     image: 'quay.io/invidious/invidious:latest'
     hostname: 'invidious'
+    pull: true
     env:
       INVIDIOUS_CONFIG: |
         db:
@@ -61,3 +61,4 @@
     links:
       - 'invidious-db'
     restart_policy: unless-stopped
+    recreate: true
