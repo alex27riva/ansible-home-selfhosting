@@ -1,0 +1,11 @@
+---
+- name: Configure Chatbot container
+  community.docker.docker_container:
+    name: chatbot-ui
+    image: 'ghcr.io/mckaywrigley/chatbot-ui:main'
+    pull: true
+    env:
+      OPENAI_API_KEY: "{{ openai_api_key }}"
+    ports:
+      - "{{ ext_port }}:3000"
+    restart_policy: unless-stopped

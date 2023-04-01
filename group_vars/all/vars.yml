@@ -64,6 +64,7 @@ homer_port: '8080'
 
 enable_libreddit: true
 enable_nitter: true
+enable_chatbot: true
 
 # Services
 

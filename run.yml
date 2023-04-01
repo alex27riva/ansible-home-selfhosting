@@ -38,6 +38,12 @@
         - frontends
         - containers
 
+    - role: containers/frontends/chatbot
+      tags:
+        - chatbot
+        - frontends
+        - containers
+
     - role: containers/services/linkding
       tags:
         - linkding
