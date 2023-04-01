@@ -13,7 +13,7 @@
 
 # Currently the repository has to be cloned, this is because the init-invidious-db.sh file and the config/sql directory have to be mounted to the postgres container.
 - name: Clone Invidious repo
-  ansible.builtin.git:
+  ansible.builtin.git: # noqa: latest
     repo: 'https://github.com/iv-org/invidious.git'
     dest: "{{ invidious_repo_dir }}"
 
