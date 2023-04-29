@@ -5,6 +5,6 @@ homer_category: frontends
 
 dashboard_url: "http://invidious.{{ host_tld }}"
 
-ext_port: 3333
+ext_port: 2002
 
 invidious_repo_dir: "/home/{{ username }}/repos/invidious"

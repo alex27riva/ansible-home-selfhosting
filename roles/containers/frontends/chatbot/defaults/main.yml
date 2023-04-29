@@ -7,4 +7,4 @@ homer_category: frontends
 
 dashboard_url: "http://chatbot.{{ host_tld }}"
 
-ext_port: 3527
+ext_port: 2003

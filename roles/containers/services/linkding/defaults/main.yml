@@ -5,7 +5,7 @@ homer_category: services
 
 dashboard_url: "http://linkding.{{ host_tld }}"
 
-ext_port: 9090
+ext_port: 3000
 
 default_user: admin
 

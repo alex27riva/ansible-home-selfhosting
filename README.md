@@ -50,6 +50,19 @@ Where `inventory` contains your host configuration, see `inventory.example` for 
 
 - [Portainer](https://github.com/portainer/portainer) (Making Docker and Kubernetes management easy)
 
+### Port mappings
+
+| Name         | Category | Ext port | Int port |
+| ------------ | -------- | -------- | -------- |
+| Libreddit    | frontend | 2000     | 8080     |
+| Nitter       | frontend | 2001     | 8080     |
+| Invidious    | frontend | 2002     | 3000     |
+| Chatbot-ui   | frontend | 2003     | 3000     |
+| Linkding     | Services | 3000     | 9090     |
+| Wireguard-ui | Services | 3001     | 5000     |
+| Syncthing    | Services | 8384     | 8384     |
+| Portainer    | System   | 4000     | 9000     |
+
 ## Security
 
 This configuration is intended to be used within your local network or via a Wireguard VPN connection.
