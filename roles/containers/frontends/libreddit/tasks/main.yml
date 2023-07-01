@@ -2,6 +2,7 @@
 - name: Configure Libreddit container
   community.docker.docker_container:
     name: libreddit
+    hostname: libreddit
     image: 'libreddit/libreddit'
     pull: true
     env:

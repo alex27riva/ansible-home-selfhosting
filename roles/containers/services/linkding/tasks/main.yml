@@ -1,7 +1,12 @@
 ---
+- name: Create a volume for Linkding
+  community.general.docker_volume:
+    volume_name: 'linkding_data'
+
 - name: Configure Linkding container
   community.docker.docker_container:
-    name: "{{ container_name }}"
+    name: linkding
+    hostname: linkding
     image: "sissbruecker/linkding:latest"
     pull: true
     volumes:

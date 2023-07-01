@@ -5,7 +5,8 @@
 
 - name: Configure Syncthing container
   community.docker.docker_container:
-    name: "{{ container_name }}"
+    name: syncthing
+    hostname: syncthing
     image: 'syncthing/syncthing'
     pull: true
     volumes:

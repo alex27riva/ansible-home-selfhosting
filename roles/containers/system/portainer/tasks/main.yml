@@ -5,7 +5,8 @@
 
 - name: Deploy Portainer container
   community.docker.docker_container:
-    name: "{{ container_name }}"
+    name: portainer
+    hostname: portainer
     image: 'portainer/portainer-ce:latest'
     pull: true
     volumes:

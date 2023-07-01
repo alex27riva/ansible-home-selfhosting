@@ -2,6 +2,7 @@
 - name: Configure Chatbot container
   community.docker.docker_container:
     name: chatbot-ui
+    hostname: chatbot-ui
     image: 'ghcr.io/mckaywrigley/chatbot-ui:main'
     pull: true
     env:

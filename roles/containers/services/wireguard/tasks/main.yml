@@ -1,7 +1,8 @@
 ---
 - name: Configure Wireguard container
   community.docker.docker_container:
-    name: "{{ container_name }}"
+    name: wireguard
+    hostname: wireguard
     image: 'ngoduykhanh/wireguard-ui:latest'
     pull: true
     capabilities:

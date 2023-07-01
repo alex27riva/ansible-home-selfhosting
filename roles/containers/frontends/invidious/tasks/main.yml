@@ -35,8 +35,8 @@
 - name: Configure Invidious container
   community.docker.docker_container:
     name: 'invidious'
-    image: 'quay.io/invidious/invidious:latest'
     hostname: 'invidious'
+    image: 'quay.io/invidious/invidious:latest'
     pull: true
     env:
       INVIDIOUS_CONFIG: |
