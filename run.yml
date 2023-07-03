@@ -20,6 +20,12 @@
         - containers
       when: enable_homer | default(False)
 
+    - role: containers/system/nginxproxymanager
+      tags:
+        - nginxproxymanager
+        - system
+        - containers
+
     - role: containers/frontends/nitter
       tags:
         - nitter

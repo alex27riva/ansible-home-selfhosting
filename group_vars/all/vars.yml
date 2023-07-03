@@ -63,7 +63,7 @@ homer_port: '8080'
 # Frontends
 
 enable_libreddit: true
-enable_nitter: true
+enable_nitter: false
 enable_chatbot: true
 
 # Services
@@ -72,6 +72,7 @@ enable_linkding: true
 enable_invidious: true
 enable_wireguard: true
 enable_syncthing: true
+enable_nginxproxymanager: true
 
 # System
 

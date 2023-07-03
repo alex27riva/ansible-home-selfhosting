@@ -16,4 +16,6 @@
     env:
       LD_SUPERUSER_NAME: "{{ default_user }}"
       LD_SUPERUSER_PASSWORD: "{{ default_pass }}"
+    networks:
+      - name: internal
     restart_policy: unless-stopped

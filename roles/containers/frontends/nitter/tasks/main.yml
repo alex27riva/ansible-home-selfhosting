@@ -39,6 +39,8 @@
       - "{{ docker_dir }}/nitter/nitter.conf:/src/nitter.conf"
     ports:
       - "{{ ext_port }}:8080"
+    networks:
+      - name: internal
     restart_policy: unless-stopped
     links:
       - 'nitter-redis'

@@ -9,4 +9,6 @@
       OPENAI_API_KEY: "{{ openai_api_key }}"
     ports:
       - "{{ ext_port }}:3000"
+    networks:
+      - name: internal
     restart_policy: unless-stopped

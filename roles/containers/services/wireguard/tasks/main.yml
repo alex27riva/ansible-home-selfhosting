@@ -27,5 +27,7 @@
     volumes:
       - "{{ docker_dir }}/wireguard/db:/app/db"
       - "{{ docker_dir }}/wireguard/config:/etc/wireguard"
+    networks:
+      - name: internal
     restart_policy: unless-stopped
     privileged: true

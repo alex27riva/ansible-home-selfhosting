@@ -3,6 +3,10 @@
   community.docker.docker_volume:
     volume_name: postgresdata
 
+- name: Create network for Invidious
+  community.docker.docker_network:
+    name: invidious_network
+
 - name: Create repo directory
   ansible.builtin.file:
     path: "{{ invidious_repo_dir }}"
@@ -31,6 +35,9 @@
       POSTGRES_DB: invidious
       POSTGRES_USER: kemal
       POSTGRES_PASSWORD: kemal
+    networks:
+      - name: invidious_network
+      - name: internal
 
 - name: Configure Invidious container
   community.docker.docker_container:
@@ -47,6 +54,7 @@
           host: invidious-db
           port: 5432
         check_tables: true
+        hmac_key: 2fd0566555d91781779c2feacf482d8c91f8a003
         # external_port:
         # domain:
         # https_only: false
@@ -58,7 +66,8 @@
       retries: 2
     ports:
       - "{{ ext_port }}:3000"
-    links:
-      - 'invidious-db'
+    networks:
+      - name: invidious_network
+      - name: internal
     restart_policy: unless-stopped
     recreate: true

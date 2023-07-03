@@ -1,0 +1,25 @@
+---
+- name: Create a volume for Nginx Proxy Manager
+  community.general.docker_volume:
+    volume_name: 'nginxpm_data'
+
+- name: Create a volume for Letsencrypt
+  community.general.docker_volume:
+    volume_name: 'letsencrypt'
+
+- name: Deploy nginxproxymanager container
+  community.docker.docker_container:
+    name: nginxproxymanager
+    hostname: nginxproxymanager
+    image: 'jc21/nginx-proxy-manager:latest'
+    pull: true
+    volumes:
+      - 'nginxpm_data:/data'
+      - 'letsencrypt:/etc/letsencrypt'
+    networks:
+      - name: internal
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    restart_policy: unless-stopped

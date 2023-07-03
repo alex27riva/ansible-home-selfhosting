@@ -11,4 +11,6 @@
       LIBREDDIT_DEFAULT_HIDE_HLS_NOTIFICATION: "{{ libreddit_hls_hide }}"
     ports:
       - "{{ ext_port }}:8080"
+    networks:
+      - name: internal
     restart_policy: unless-stopped
