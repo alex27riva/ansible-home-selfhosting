@@ -72,7 +72,3 @@
       tags:
         - portainer
         - containers
-
-    - role: nginx
-      tags:
-        - nginx
