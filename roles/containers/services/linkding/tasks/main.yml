@@ -11,8 +11,6 @@
     pull: true
     volumes:
       - "{{ docker_dir }}/linkding/data:/etc/linkding/data"
-    ports:
-      - "{{ ext_port }}:9090"
     env:
       LD_SUPERUSER_NAME: "{{ default_user }}"
       LD_SUPERUSER_PASSWORD: "{{ default_pass }}"

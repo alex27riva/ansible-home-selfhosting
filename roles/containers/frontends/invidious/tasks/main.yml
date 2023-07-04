@@ -64,8 +64,6 @@
       interval: 30s
       timeout: 5s
       retries: 2
-    ports:
-      - "{{ ext_port }}:3000"
     networks:
       - name: invidious_network
       - name: internal

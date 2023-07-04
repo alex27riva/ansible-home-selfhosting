@@ -3,6 +3,10 @@
   community.docker.docker_volume:
     volume_name: "nitter_redis"
 
+- name: Create network for Nitter-Redis communication
+  community.docker.docker_network:
+    name: nitter
+
 - name: Ensure data folder for Nitter exists
   ansible.builtin.file:
     path: "{{ docker_dir }}/nitter"
@@ -27,6 +31,8 @@
     command: redis-server --save 60 1 --loglevel warning
     volumes:
       - "nitter_redis:/data"
+    networks:
+      - name: nitter
     restart_policy: unless-stopped
 
 - name: Configure Nitter container
@@ -37,10 +43,7 @@
     pull: true
     volumes:
       - "{{ docker_dir }}/nitter/nitter.conf:/src/nitter.conf"
-    ports:
-      - "{{ ext_port }}:8080"
     networks:
+      - name: nitter
       - name: internal
     restart_policy: unless-stopped
-    links:
-      - 'nitter-redis'
