@@ -10,10 +10,11 @@
     image: "sissbruecker/linkding:latest"
     pull: true
     volumes:
-      - "{{ docker_dir }}/linkding/data:/etc/linkding/data"
+      - "linkding_data:/etc/linkding/data"
     env:
       LD_SUPERUSER_NAME: "{{ default_user }}"
       LD_SUPERUSER_PASSWORD: "{{ default_pass }}"
     networks:
       - name: internal
+      - name: cloudflare
     restart_policy: unless-stopped
