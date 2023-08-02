@@ -5,6 +5,4 @@ homer_category: frontends
 
 dashboard_url: "http://nitter.{{ host_tld }}"
 
-ext_port: 2001
-
 redis_container: redis

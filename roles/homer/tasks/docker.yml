@@ -17,8 +17,6 @@
       TZ: "{{ timezone }}"
     volumes:
       - "{{ docker_dir }}/{{ container_name }}:/www/assets"
-    ports:
-      - "{{ homer_port }}:8080"
     networks:
       - name: internal
     restart_policy: unless-stopped

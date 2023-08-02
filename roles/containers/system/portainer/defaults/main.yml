@@ -4,5 +4,3 @@ container_name: portainer
 homer_category: system
 
 dashboard_url: "http://portainer.{{ host_tld }}"
-
-ext_port: 4000

@@ -3,6 +3,4 @@ container_name: nginxproxymanager
 
 homer_category: system
 
-dashboard_url: "http://nginx.{{ host_tld }}"
-
-ext_port: 4001
+dashboard_url: "http://npm.{{ host_tld }}"

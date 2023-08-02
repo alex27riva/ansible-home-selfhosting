@@ -4,5 +4,3 @@ container_name: syncthing
 homer_category: services
 
 dashboard_url: "http://syncthing.{{ host_tld }}"
-
-ext_port: 8384

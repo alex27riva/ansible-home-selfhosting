@@ -6,5 +6,3 @@ dashboard_name: ChatGPT
 homer_category: frontends
 
 dashboard_url: "http://chatbot.{{ host_tld }}"
-
-ext_port: 2003

@@ -5,8 +5,6 @@ homer_category: services
 
 dashboard_url: "http://wireguard.{{ host_tld }}"
 
-ext_port: "3001"
-
 wg_server_port: '51820'
 
 post_up: "iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth+ -j MASQUERADE"
