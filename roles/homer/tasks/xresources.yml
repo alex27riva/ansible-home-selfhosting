@@ -4,9 +4,15 @@
     name: python3-pip
     state: present
 
+# see https://stackoverflow.com/questions/75608323/how-do-i-solve-error-externally-managed-environment-every-time-i-use-pip-3
+- name: fix externally-managed-environment
+  ansible.builtin.file:
+    path: /usr/lib/python3.11/EXTERNALLY-MANAGED
+    state: absent
+
 - name: Install the Xresources parser
   ansible.builtin.pip:
-    name: xparser
+    name: git+https://github.com/alex27riva/xparser.git
 
 - name: Install the Xresources file
   ansible.builtin.copy:

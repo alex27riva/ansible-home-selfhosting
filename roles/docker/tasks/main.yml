@@ -36,11 +36,6 @@
       - docker
     append: true
 
-- name: Install Python docker dependency
-  ansible.builtin.pip:
-    name: docker
-    state: present
-
 - name: Make sure that the docker folders exists
   ansible.builtin.file:
     path: "{{ docker_dir }}"
