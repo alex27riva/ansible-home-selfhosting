@@ -62,7 +62,7 @@ homer_port: '8080'
 
 # Frontends
 
-enable_libreddit: true
+enable_redlib: true
 enable_nitter: false
 enable_chatbot: true
 

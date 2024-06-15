@@ -32,9 +32,9 @@
         - frontends
         - containers
 
-    - role: containers/frontends/libreddit
+    - role: containers/frontends/redlib
       tags:
-        - libreddit
+        - redlib
         - frontends
         - containers
 

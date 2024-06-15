@@ -1,0 +1,14 @@
+---
+container_name: redlib
+
+homer_category: frontends
+
+dashboard_url: "http://redlib.{{ host_tld }}"
+
+redlib_theme: gold
+
+redlib_hls: "on"
+
+redlib_hls_hide: "on"
+
+redlib_subscriptions: "homelab"

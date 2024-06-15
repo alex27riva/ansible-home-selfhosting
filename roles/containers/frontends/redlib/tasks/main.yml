@@ -1,0 +1,15 @@
+---
+- name: Configure Redlib container
+  community.docker.docker_container:
+    name: redlib
+    hostname: redlib
+    image: 'quay.io/redlib/redlib:latest'
+    pull: true
+    env:
+      REDLIB_DEFAULT_THEME: "{{ redlib_theme }}"
+      REDLIB_DEFAULT_USE_HLS: "{{ redlib_hls }}"
+      REDLIB_DEFAULT_HIDE_HLS_NOTIFICATION: "{{ redlib_hls_hide }}"
+      REDLIB_DEFAULT_SUBSCRIPTIONS: "{{ redlib_subscriptions }}"
+    networks:
+      - name: internal
+    restart_policy: unless-stopped
