@@ -8,7 +8,7 @@
     - role: system
       tags: system
 
-    - role: hifis.unattended_upgrades
+    - role: hifis.toolkit.unattended_upgrades
       when: ansible_facts['os_family'] == 'Debian'
 
     - role: docker
