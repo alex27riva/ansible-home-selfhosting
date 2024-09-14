@@ -1,9 +1,7 @@
 ---
 - name: Run all roles
-  hosts: futro
+  hosts: "{{ target_hosts }}"
   become: true
-  vars_files:
-    - group_vars/main.yml
   roles:
     - role: system
       tags: system

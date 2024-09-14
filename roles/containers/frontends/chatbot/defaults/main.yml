@@ -6,3 +6,5 @@ dashboard_name: ChatGPT
 homer_category: frontends
 
 dashboard_url: "http://chatbot.{{ host_tld }}"
+
+openai_api_key: ''
