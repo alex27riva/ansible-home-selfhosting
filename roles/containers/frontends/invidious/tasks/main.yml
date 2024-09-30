@@ -39,6 +39,24 @@
       - name: invidious_network
       - name: internal
 
+- name: Create inv_sig_helper container
+  community.docker.docker_container:
+    name: 'inv_sig_helper'
+    hostname: 'inv_sig_helper'
+    image: 'quay.io/invidious/inv-sig-helper:latest'
+    init: true
+    command: ["--tcp", "0.0.0.0:12999"]
+    env:
+      RUST_LOG: info
+    restart_policy: unless-stopped
+    cap_drop:
+      - ALL
+    read_only: true
+    security_opts:
+      - no-new-privileges:true
+    networks:
+      - name: invidious_network
+
 - name: Configure Invidious container
   community.docker.docker_container:
     name: 'invidious'
@@ -54,11 +72,10 @@
           host: invidious-db
           port: 5432
         check_tables: true
-        hmac_key: 2fd0566555d91781779c2feacf482d8c91f8a003
-        # external_port:
-        # domain:
-        # https_only: false
-        # statistics_enabled: false
+        hmac_key: "{{ invidious_hmac_key }}"
+        signature_server: inv_sig_helper:12999
+        visitor_data: "{{ invidious_visitor_data }}"
+        po_token: "{{ invidious_po_token }}"
     healthcheck:
       test: 'wget -nv --tries=1 --spider http://localhost:3000/api/v1/comments/jNQXAC9IVRw || exit 1'
       interval: 30s
