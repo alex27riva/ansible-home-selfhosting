@@ -1,4 +1,9 @@
 ---
+- name: Install UFW
+  ansible.builtin.apt:
+    name:
+      - ufw
+
 - name: Allow SSH
   community.general.ufw:
     rule: allow

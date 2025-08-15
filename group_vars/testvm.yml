@@ -1,9 +1,0 @@
----
-username: 'debian'
-
-# openai_api_key: ''
-# ddns_endpoint: ''
-
-enable_nitter: true
-enable_chatbot: false
-enable_wireguard: false

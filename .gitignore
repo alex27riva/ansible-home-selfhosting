@@ -1,3 +1,5 @@
 .vagrant
 .vscode/
-group_vars/futro.yml
+.ansible/
+group_vars/*
+!group_vars/all.yml
