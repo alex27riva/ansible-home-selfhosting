@@ -3,6 +3,10 @@
   community.docker.docker_volume:
     volume_name: postgresdata
 
+- name: Create volume for inv Companion
+  community.docker.docker_volume:
+    volume_name: companioncache
+
 - name: Create network for Invidious
   community.docker.docker_network:
     name: invidious_network
@@ -39,14 +43,31 @@
       - name: invidious_network
       - name: internal
 
-- name: Create inv_sig_helper container
+# - name: Create inv_sig_helper container
+#   community.docker.docker_container:
+#     name: 'inv_sig_helper'
+#     hostname: 'inv_sig_helper'
+#     image: 'quay.io/invidious/inv-sig-helper:latest'
+#     init: true
+#     command: ["--tcp", "0.0.0.0:12999"]
+#     env:
+#       RUST_LOG: info
+#     restart_policy: unless-stopped
+#     cap_drop:
+#       - ALL
+#     read_only: true
+#     security_opts:
+#       - no-new-privileges:true
+#     networks:
+#       - name: invidious_network
+
+- name: Create invidious_companion container
   community.docker.docker_container:
-    name: 'inv_sig_helper'
-    hostname: 'inv_sig_helper'
-    image: 'quay.io/invidious/inv-sig-helper:latest'
-    init: true
-    command: ["--tcp", "0.0.0.0:12999"]
+    name: 'companion'
+    hostname: 'companion'
+    image: 'quay.io/invidious/invidious-companion:latest'
     env:
+      SERVER_SECRET_KEY: "{{ invidious_companion_key }}"
       RUST_LOG: info
     restart_policy: unless-stopped
     cap_drop:
@@ -56,6 +77,8 @@
       - no-new-privileges:true
     networks:
       - name: invidious_network
+    volumes:
+      - companioncache:/var/tmp/youtubei.js:rw
 
 - name: Configure Invidious container
   community.docker.docker_container:
@@ -72,12 +95,12 @@
           host: invidious-db
           port: 5432
         check_tables: true
+        invidious_companion:
+        - private_url: "http://companion:8282/companion"
         hmac_key: "{{ invidious_hmac_key }}"
-        signature_server: inv_sig_helper:12999
-        visitor_data: "{{ invidious_visitor_data }}"
-        po_token: "{{ invidious_po_token }}"
+        invidious_companion_key: "{{ invidious_companion_key }}"
     healthcheck:
-      test: 'wget -nv --tries=1 --spider http://localhost:3000/api/v1/comments/jNQXAC9IVRw || exit 1'
+      test: 'wget -nv --tries=1 --spider http://localhost:3000/api/v1/trending || exit 1'
       interval: 30s
       timeout: 5s
       retries: 2
