@@ -24,6 +24,7 @@
   ansible.builtin.git: # noqa: latest
     repo: 'https://github.com/iv-org/invidious.git'
     dest: "{{ invidious_repo_dir }}"
+    version: master
 
 - name: Create postgres container
   community.docker.docker_container:
@@ -66,6 +67,7 @@
     name: 'companion'
     hostname: 'companion'
     image: 'quay.io/invidious/invidious-companion:latest'
+    pull: true
     env:
       SERVER_SECRET_KEY: "{{ invidious_companion_key }}"
       RUST_LOG: info
@@ -84,7 +86,7 @@
   community.docker.docker_container:
     name: 'invidious'
     hostname: 'invidious'
-    image: 'quay.io/invidious/invidious:latest'
+    image: 'quay.io/invidious/invidious:master'
     pull: true
     env:
       INVIDIOUS_CONFIG: |
